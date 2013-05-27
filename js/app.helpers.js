@@ -3,9 +3,9 @@ window.APP = (function(module, $) {
 
     module.helpers = {
         supportsTouch: is_touch_device(),
-		screenView : getScreenView(),
-		orientation: getOrientation(),
-		jsPath : '/assets/js/'
+	screenView : getScreenView(),
+	orientation: getOrientation(),
+	jsPath : '/assets/js/'
     }
 
 	
