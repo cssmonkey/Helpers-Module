@@ -2,7 +2,7 @@ window.APP = (function(module, $) {
     "use strict";
 
     module.helpers = {
-        supportsTouch: is_touch_device(),
+        supportsTouch: isTouchDevice(),
 	screenView : getScreenView(),
 	orientation: getOrientation(),
 	jsPath : '/assets/js/'
@@ -40,7 +40,7 @@ window.APP = (function(module, $) {
 	}
 	
     /*--- Check if device supports touch event ---*/
-    function is_touch_device() {
+    function isTouchDevice() {
         return !!('ontouchstart' in window) // works on most browsers 
         || !!('msMaxTouchPoints' in window); // works on ie10
     }
