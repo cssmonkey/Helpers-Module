@@ -42,7 +42,7 @@ window.APP = (function(module, $) {
     /*--- Check if device supports touch event ---*/
     function is_touch_device() {
         return !!('ontouchstart' in window) // works on most browsers 
-        || !!('onmsgesturechange' in window); // works on ie10
+        || !!('msMaxTouchPoints' in window); // works on ie10
     }
     if (module.helpers.supportsTouch) {
 		document.getElementsByTagName("html")[0].className += " supports-touch";
