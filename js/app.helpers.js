@@ -17,10 +17,10 @@ window.APP = (function(module, $) {
 			med = 768,
 			large,
 			screen;
-		if(window.screen.width <= small) {
+		if($(window).width() <= small) {
 			screen = 'small';
 		}
-		else if(window.screen.width <= med) {
+		else if($(window).width() <= med) {
 			screen = 'medium';
 		}
 		else {
