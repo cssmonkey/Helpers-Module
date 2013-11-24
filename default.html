@@ -10,18 +10,21 @@
 <body>
 <script type="text/javascript" language="javascript">
 $(function() {
-	$('.supports-touch .result').text(APP.helpers.supportsTouch);
-	$('.screen-view .result').text(APP.helpers.screenView);
-	$('.screen-orientation .result').text(APP.helpers.orientation);
-	$('.js-path .result').text(APP.helpers.jsPath);
-});
+	var helper = APP.device;
+	$('.supports-touch .result').text(helper.supportsTouch);
+	$('.screen-view .result').text(helper.isSmallScreen);
+	$('.screen-orientation .result').text(helper.orientation);
+	$('.retina .result').text(helper.isRetina);
+        $('.connection-type .result').text(helper.connectionType);
+})($);
 </script>
 
 <ul>
-	<li class="supports-touch">Supports touch: <span class="result"></span></li>
-    <li class="screen-view">Screen View: <span class="result"></span></li>
-    <li class="screen-orientation">Screen Orientation (inconsistent results): <span class="result"></span></li>
-    <li class="js-path">JavaScript Path: <span class="result"></span></li>
+    <li class="supports-touch">Supports touch: <span class="result"></span></li>
+    <li class="screen-view">Is small screen (<= 480px): <span class="result"></span></li>
+    <li class="screen-orientation">Screen Orientation (inconsistent results cross device): <span class="result"></span></li>
+    <li class="retina">Is retina display: <span class="result"></span></li>
+    <li class="connection-type">Connection type: <span class="result"></span></li>
 </ul>
 
 </body>
