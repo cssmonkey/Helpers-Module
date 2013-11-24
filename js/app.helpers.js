@@ -28,9 +28,13 @@ window.APP = (function(module) {
 	})(),*/
 	// Connection type e.g. wifi, 3g etc. Currently only supported by Android
 	connectionType : (function() {
-		var bandwidth = navigator.connection.type;
-		if (typeof bandwidth === "undefined") 
+		var bandwidth = navigator.connection;
+		if (typeof bandwidth === "undefined") {
    			bandwidth = 'connection.type not supported';
+		}
+		else {
+			bandwidth = bandwidth.type		
+		}
 		return bandwidth;		
 	})(),
 	orientation : function() {
