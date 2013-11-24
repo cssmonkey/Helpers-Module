@@ -1,54 +1,48 @@
-window.APP = (function(module, $) {
+window.APP = (function(module) {
     "use strict";
 
-    module.helpers = {
-        supportsTouch: isTouchDevice(),
-	screenView : getScreenView(),
-	orientation: getOrientation(),
-	jsPath : '/assets/js/'
-    }
-
-	
-	/*--- Check what view we are in - small, medium, large ---*/
-	// Use a common element which changes between window sizes
-	// e.g. main nav - hidden on small screens. try and avoid using device widths if possible
-    function getScreenView() {
-		var small = 480,
-			med = 768,
-			large,
-			screen;
-		if($(window).width() <= small) {
-			screen = 'small';
-		}
-		else if($(window).width() <= med) {
-			screen = 'medium';
-		}
-		else {
-			screen = 'large';
-		}
-		return screen;
-	}
-	
-	/*--- Check the orientation of device ---*/
-    function getOrientation() {
+    module.device = {
+    	// Check for touch support usign touch & ms-pointer events		
+	supportsTouch : (function() {
+		var isTouch = !!('ontouchstart' in window) || !!window.navigator.msMaxTouchPoints;
+		if (isTouch) {
+			document.getElementsByTagName("html")[0].className += " supports-touch";			
+		}			
+		return isTouch; 			
+	})(),
+	// Check for retina display. 
+	isRetina : (function() {
+		var isRetina = (window.devicePixelRatio > 1) ? true : false;
+		if (isRetina) {
+			document.getElementsByTagName("html")[0].className += " retina";			
+		}			
+		return isRetina; 		
+	})(),
+	// Is mobile view.		
+	isSmallScreen : function() {
+		var isSmallScreen = (window.innerWidth <= 480) ? true : false;					
+		return isSmallScreen;		
+	},
+	// Is IEx or lt-IEx
+	/*isIE : (function(version) {
+	})(),*/
+	// Connection type e.g. wifi, 3g etc. Currently only supported by Android
+	connectionType : (function() {
+		var bandwidth = navigator.connection.type;
+		if (typeof bandwidth === "undefined") 
+   			bandwidth = 'connection.type not supported';
+		return bandwidth;		
+	})(),
+	orientation : function() {
 		var deviceOrientation = window.orientation;
 		if (typeof deviceOrientation === "undefined") 
    			deviceOrientation = 'orientation not supported';
 		
 		return deviceOrientation;
-		
 	}
-	
-    /*--- Check if device supports touch event ---*/
-    function isTouchDevice() {
-        return !!('ontouchstart' in window) || !!window.navigator.msMaxTouchPoints; 
+
     }
-    if (module.helpers.supportsTouch) {
-		document.getElementsByTagName("html")[0].className += " supports-touch";
-    }
-	
-	
 	
     return module;
 
-})(window.APP || {}, window.jQuery);  
+})(window.APP || {});  
